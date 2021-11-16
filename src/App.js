@@ -1,11 +1,18 @@
-import React, {useEffect, useState} from "react"
+import React from "react"
 import './App.css';
+import {useSelector, useDispatch} from 'react-redux'
+import Search from "./Search";
 
 function App() {
+  const counter = useSelector((state) => state.counter)
+  const signedIn = useSelector((state) => state.isLogged)
+  const dispatch = useDispatch()
   return (
     <div>
-      <h1>Counter: 0</h1>
-      <button>Increment</button>
+      <h1>Counter: {counter}</h1>
+      <button onClick={() => dispatch({type : 'INCREMENT'})}>Increment</button>
+      <Search />
+      {signedIn && <h1>MOVIE LIST</h1>}
     </div>
   );
 }
